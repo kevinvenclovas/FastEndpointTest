@@ -1,0 +1,25 @@
+name: Deploy Dev
+
+on: [push]
+
+jobs:
+  deploy-dev:
+    runs-on: windows-latest
+  
+    steps:  
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          submodules: recursive
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restore dependencies
+        run: dotnet restore .\FastEndpointTest
+      
+      - name: Build with dotnet
+        run: dotnet build --no-restore --configuration Release .\FastEndpointTest
