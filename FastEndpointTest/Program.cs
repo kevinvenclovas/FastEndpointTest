@@ -4,6 +4,7 @@ using FastEndpoints.Swagger;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.Data;
 
 namespace FastEndpointTest
 {
@@ -57,6 +58,17 @@ namespace FastEndpointTest
 
             var app = builder.Build();
 
+UpdateRowSource            // Configure the HTTP request pipeline.
+            if (app.Environment.IsDevelopment())
+            {
+                app.UseOpenApi();
+                app.UseSwaggerUi(c =>
+                {
+                    c.Path = string.Empty;
+                    c.DocumentTitle = "AlfaTool API";
+                });
+            }
+
             app.UseFastEndpoints(c =>
             {
                 c.Serializer.RequestDeserializer = async (req, tDto, jCtx, ct) =>
@@ -74,16 +86,7 @@ namespace FastEndpointTest
                 c.Endpoints.ShortNames = true;
             });
 
-            // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseOpenApi();
-                app.UseSwaggerUi(c =>
-                {
-                    c.Path = string.Empty;
-                    c.DocumentTitle = "AlfaTool API";
-                });
-            }
+            app.UseHttpLogging();
 
             app.UseHttpsRedirection();
             app.UseRouting();
@@ -91,8 +94,7 @@ namespace FastEndpointTest
             app.UseCors();
             app.UseAuthentication();
             app.UseAuthorization();
-
-            app.MapControllers();
+            app.UseResponseCaching();
 
             app.Run();
         }
