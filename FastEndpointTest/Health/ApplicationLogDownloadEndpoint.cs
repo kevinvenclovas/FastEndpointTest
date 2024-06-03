@@ -1,9 +1,4 @@
-﻿using AlfaTools.Modules.Core.Services.Logging;
-using AlfaTools.Modules.Models.Core.Logging;
-using AlfaTools.Utils.Entities;
-using ExcelBuilder;
-using ExcelBuilder.Entities;
-using FastEndpoints;
+﻿using FastEndpoints;
 
 namespace FastEndpointTest.Health
 {
