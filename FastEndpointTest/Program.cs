@@ -57,8 +57,7 @@ namespace FastEndpointTest
             builder.Services.AddEndpointsApiExplorer();
 
             var app = builder.Build();
-
-UpdateRowSource            // Configure the HTTP request pipeline.
+             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseOpenApi();
