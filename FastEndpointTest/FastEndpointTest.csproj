@@ -8,7 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
     <PackageReference Include="FastEndpoints.Generator" Version="5.21.2.18-beta" PrivateAssets="all" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" />
     <PackageReference Include="FastEndpoints" Version="5.21.2.18-beta" />
     <PackageReference Include="FastEndpoints.Security" Version="5.21.2.18-beta" />
