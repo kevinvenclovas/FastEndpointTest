@@ -47,6 +47,8 @@ namespace FastEndpointTest
 
             builder.Services.AddAuthorization();
 
+            builder.Services.AddMvc();
+
             // Add services to the container.
 
             builder.Services.AddControllers();
@@ -76,13 +78,19 @@ namespace FastEndpointTest
             if (app.Environment.IsDevelopment())
             {
                 app.UseOpenApi();
-                app.UseSwaggerUi();
+                app.UseSwaggerUi(c =>
+                {
+                    c.Path = string.Empty;
+                    c.DocumentTitle = "AlfaTool API";
+                });
             }
 
             app.UseHttpsRedirection();
+            app.UseRouting();
 
+            app.UseCors();
+            app.UseAuthentication();
             app.UseAuthorization();
-
 
             app.MapControllers();
 
